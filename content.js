@@ -4,12 +4,12 @@ const isTextNode = node => node.nodeType === Node.TEXT_NODE
 const containsPoundSign = node => node.nodeValue.includes('£')
 const poundsRegex = /£[\d,]+\.*\d{0,2}/g
 
-const round = num => +(Math.round(num + "e+1")  + "e-1");
+const roundTo1Dp = num => +(Math.round(num + "e+1")  + "e-1");
 
 const convertToNumber = match => {
   const numberPerGbp = 1 / 0.11 // 11p per potato?
   const price = match.slice(1)
-  const numberOfPotatoes = round(price * numberPerGbp)
+  const numberOfPotatoes = roundTo1Dp(price * numberPerGbp)
   const potatoes = `${numberOfPotatoes} medium-sized 🥔s`
   return `${match} (${potatoes})`
 }
@@ -30,7 +30,7 @@ elements.forEach(element => {
     .forEach(node => {
       const text = node.nodeValue;
 
-      // Replace each instance of the text with quantity of potatoes
+      // Replace each instance of the text with new text
       const replacedText = text.replace(poundsRegex, convertToNumber)
       if (replacedText !== text) {
         element.replaceChild(document.createTextNode(replacedText), node)
