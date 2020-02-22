@@ -1,19 +1,36 @@
-// let changeColor = document.getElementById('changeColor');
+const weightRadio = document.getElementById('weight');
+const quantityRadio = document.getElementById('quantity');
 
-// chrome.storage.sync.get('color', function(data) {
-//   changeColor.style.backgroundColor = data.color;
-//   changeColor.setAttribute('value', data.color);
+// chrome.storage.sync.get('conversion', (data) => {
+  //  console.log({ data })
+   // conversion.style.backgroundColor = data.color;
+   // conversion.setAttribute('value', data.color);
 // });
 
-// changeColor.onclick = function(element) {
-//   let color = element.target.value;
-//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     chrome.tabs.executeScript(
-//         tabs[0].id,
-//         {code: 'document.body.style.backgroundColor = "' + color + '";'});
-//   });
-// };
+weightRadio.onchange = (element) => {
+  const isChecked = element.target.checked
+  
+  if (isChecked) {
+    // Change to weight
+    console.log('Weight')
+  }
 
-[...document.querySelectorAll("p")]
-   .filter(p => p.textContent.includes("£"))
-   .forEach(p => console.log(p.textContent))
+  // let color = element.target.value;
+  // chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    // chrome.tabs.executeScript(tabs[0].id, {code: 'document.body.style.backgroundColor = "' + color + '";'});
+  // });
+};
+
+quantityRadio.onchange = (element) => {
+  const isChecked = element.target.checked
+  
+  if (isChecked) {
+    // Change to quantity
+    console.log('Quantity')
+  }
+
+  // let color = element.target.value;
+  // chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    // chrome.tabs.executeScript(tabs[0].id, {code: 'document.body.style.backgroundColor = "' + color + '";'});
+  // });
+};
